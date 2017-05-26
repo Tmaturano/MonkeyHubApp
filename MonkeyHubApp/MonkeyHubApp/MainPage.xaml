@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MonkeyHubApp"
+             x:Class="MonkeyHubApp.MainPage"
+             xmlns:controls="clr-namespace:MonkeyHubApp.Controls;assembly:MonkeyHubApp"
+             Title="Categorias">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Sobre" Command="{Binding AboutCommand}"/>
+        <ToolbarItem Text="Buscar" Command="{Binding SearchCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <controls:MyListView 
+              ItemsSource="{Binding Tags}"               
+              HasUnevenRows="True" 
+              ItemTappedCommand="{Binding ShowCategoriaCommand}"> 
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout Padding="20">
+                        <Label Text="{Binding Name}" TextColor="Black" Font="Large"/>
+                        <Label Text="{Binding Description}" TextColor="Gray" Font="Medium"/>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </controls:MyListView>
+
+    <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
+
+</ContentPage>
